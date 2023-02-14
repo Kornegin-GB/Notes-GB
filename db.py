@@ -72,3 +72,11 @@ def read_db():
     data = cursor.fetchall()
     connect.commit()
     return data
+
+
+def search_db(search):
+    cursor.execute(
+        f"SELECT * FROM {TABLE_NAME} WHERE header LIKE '%{search}%'")
+    data = cursor.fetchall()
+    connect.commit()
+    return data

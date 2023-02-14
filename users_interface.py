@@ -8,6 +8,7 @@ def main_menu():
     menu = [
         "Обработать заметки",
         "Прочитать заметки",
+        "Найти заметку",
         "Удалить заметки",
         "Загрузить заметки из файла",
         "Выгрузить заметки в файл",
@@ -30,10 +31,21 @@ def menu_operation():
 
 def menu_import():
     """ Меню работы с записью """
-    name_menu = "Меню импорта"
+    name_menu = "Меню импорта\n"
     menu = [
         "Загрузить файл c заменой заметок",
         "Загрузить файл с добавлением заметок",
+    ]
+    return selecting_item(menu, name_menu)
+
+
+def menu_export():
+    """Модуль сохранения данных в файл"""
+    name_menu = "Меню экспорта\n"
+    menu = [
+        "Сохранить все данные в файл",
+        "Сохранить избранные данные в файл",
+        "Назад"
     ]
     return selecting_item(menu, name_menu)
 
@@ -45,7 +57,7 @@ def selecting_item(date_menu, name_menu):
             print(name_menu)
             for item in enumerate(date_menu, 1):
                 print(item[0], item[1])
-            item_number = int(input("Выберите пункт меню: "))
+            item_number = int(input("\nВыберите пункт меню: "))
             if 1 <= item_number <= len(date_menu):
                 return item_number
             else:
@@ -69,7 +81,7 @@ def up_del_user(data, operation):
     """ Выбор номера записи """
     while True:
         try:
-            num = int(input(f"Введите номер записи для {operation}: "))
+            num = int(input(f"\nВведите номер записи для {operation}: "))
             if 0 < num <= len(data):
                 return num
             else:
@@ -88,3 +100,22 @@ def show_result(data):
         print()
     else:
         print("Записи отсутсвуют\n")
+
+
+def selecting_file():
+    path = input("\nВведите имя файла: ")
+    return path
+
+
+def search_notes():
+    serach = input("\nВведите фразу для поиска: ")
+    return serach
+
+
+def yes_no():
+    name_menu = "Сахронить данные ?\n"
+    menu = [
+        "Да",
+        "Нет",
+    ]
+    return selecting_item(menu, name_menu)
